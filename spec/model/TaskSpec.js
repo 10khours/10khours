@@ -115,5 +115,43 @@ describe('Task Model', function() {
       expect(records[3].time).toBe(secondsForDayOf(3));
       expect(taskModel.get('total')).toBe(secondsForDayOf(3));
     });
+
+    describe('should generate readable records', function() {
+      it('when total is more than 100 minutes and less than 100 hours', function() {
+        taskModel = new app.model.Task({
+          total: 200 * 60,
+          records: [{
+            time: 200 * 60
+          }]
+        });
+        var readableRecords = taskModel.readableRecords();
+
+        expect(readableRecords[0]).toBe(200);
+      });
+
+      it('when total is more than 100 hours', function() {
+        taskModel = new app.model.Task({
+          total: 200 * 60 * 60,
+          records: [{
+            time: 200 * 60 * 60
+          }]
+        });
+        var readableRecords = taskModel.readableRecords();
+
+        expect(readableRecords[0]).toBe(200);
+      });
+
+      it('when total is more less 100 minutes', function() {
+        taskModel = new app.model.Task({
+          total: 200,
+          records: [{
+            time: 200
+          }]
+        });
+        var readableRecords = taskModel.readableRecords();
+
+        expect(readableRecords[0]).toBe(200);
+      });
+    });
   });
 });
