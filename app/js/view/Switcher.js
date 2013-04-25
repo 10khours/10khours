@@ -17,13 +17,28 @@ app.view.Switcher = Backbone.View.extend({
     }
     this.$el.removeClass('active');
   },
+  _calculateTotalTime: function(seconds) {
+    var totalTime = seconds;
+    var unit = 'sec';
+    var minutesMax = 100 * 60;
+    var hoursMax = minutesMax * 60;
+    if (totalTime > minutesMax && totalTime <= hoursMax) {
+      totalTime = Math.floor(seconds / 60);
+      unit = 'min';
+    }
+    else if (totalTime > hoursMax) {
+      totalTime = Math.floor(seconds / 3600);
+      unit = 'hours';
+    }
+    return {
+      totalTime: totalTime,
+      unit: unit
+    }
+  },
   initialize: function() {
     this.template = _.template($('#switcher').html());
-    var totalHours = this.model.get('total');
-    this.$el.append(this.template({
-      totalHours: totalHours,
-      unit: 'sec'
-    }));
+    var totalSeconds = this.model.get('total');
+    this.$el.append(this.template(this._calculateTotalTime(totalSeconds)));
     var order = this.model.get('order');
     this.$el.addClass('task-order-' + order);
     if (order === 1) {

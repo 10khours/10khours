@@ -63,4 +63,35 @@ describe('Switcher View', function() {
 
     expect(app.Event.trigger).not.toHaveBeenCalled();
   });
+
+  describe('should show total time', function() {
+    it('when the total time is less than 100 minutes', function() {
+      expect(switcherView.$el.find('.totalTime')).toHaveText('3600');
+      expect(switcherView.$el.find('.unit')).toHaveText('sec');
+    });
+
+    it('when the total time is more than 100 minutes and less than 100 hours', function() {
+      switcherView = new app.view.Switcher({
+        model: new app.model.Task({
+          total: 200 * 60,
+          order: 2
+        })
+      });
+
+      expect(switcherView.$el.find('.totalTime')).toHaveText('200');
+      expect(switcherView.$el.find('.unit')).toHaveText('min');
+    });
+
+    it('when the total time is more than 100 hours', function() {
+      switcherView = new app.view.Switcher({
+        model: new app.model.Task({
+          total: 200 * 60 * 60,
+          order: 2
+        })
+      });
+
+      expect(switcherView.$el.find('.totalTime')).toHaveText('200');
+      expect(switcherView.$el.find('.unit')).toHaveText('hours');
+    });
+  });
 });
