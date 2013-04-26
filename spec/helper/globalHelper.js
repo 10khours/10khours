@@ -2,6 +2,7 @@ beforeEach(function() {
   jasmine.getFixtures().fixturesPath = 'app/template';
   loadFixtures('main.html');
   jasmine.Ajax.useMock();
+  _gaq = [];
 
   this.addMatchers({
     toHaveUrl: function(url) {
