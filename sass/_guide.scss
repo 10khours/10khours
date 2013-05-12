@@ -1,0 +1,30 @@
+.guide:before {
+  @include background(image-url("arrow-up.png", false, false));
+  display: block;
+  height: 75px;
+  width: 74px;
+  content: "";
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  margin-left: -30px;
+}
+
+.guide {
+  color: #fafd23;
+  font-size: 22px;
+  position: relative;
+  padding: 40px 25px;
+}
+
+.add-guide {
+  text-align: left;
+}
+
+.count-guide {
+  padding-left: 100px;
+}
+
+.guide.state-guide:before {
+  display: none;
+}
