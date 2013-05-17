@@ -23,6 +23,7 @@
     "grunt-template-jasmine-istanbul": "latest",
     "grunt-contrib-jshint": "latest",
     "grunt-contrib-uglify": "latest",
-    "grunt-contrib-copy": "latest"
+    "grunt-contrib-copy": "latest",
+    "grunt-manifest": "~0.4.0"
   }
 }

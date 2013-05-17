@@ -27,7 +27,6 @@ app.Manager = (function() {
       localStorage.setItem('hasShowGuideImage', 'true');
     }
 
-
     var mainView = this.mainView;
     $.get('template/main.html', function(template) {
       mainView.setTemplate(template);

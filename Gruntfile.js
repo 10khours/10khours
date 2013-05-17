@@ -141,7 +141,7 @@ module.exports = function(grunt) {
     watch: {
       js: {
         files: dependencies,
-        tasks: ['copy', 'uglify']
+        tasks: ['copy', 'uglify', 'manifest']
       },
       test: {
         files: [sources, specs],
@@ -149,11 +149,32 @@ module.exports = function(grunt) {
       },
       css: {
         files: sasses + '/**/*',
-        tasks: 'compass:dev'
+        tasks: ['compass:dev', 'manifest']
       },
       html: {
         files: templates,
-        tasks: 'concat:html'
+        tasks: ['concat:html', 'manifest']
+      }
+    },
+
+    manifest: {
+      generate: {
+        options: {
+          basePath: 'app/',
+          preferOnline: true,
+          timestamp: true
+        },
+        src: [
+          '*.png',
+          '*.html',
+          'template/main.html',
+          'js/**/*.js',
+          '!js/lib/*',
+          'js/lib/lib.min.js',
+          'css/screen.css',
+          'css/images/*.png'
+        ],
+        dest: 'app/10khours.manifest'
       }
     }
   });
@@ -166,6 +187,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-manifest');
 
   grunt.registerTask('test', ['jasmine:test', 'jshint:test']);
 };
