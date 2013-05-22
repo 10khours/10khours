@@ -145,7 +145,7 @@ module.exports = function(grunt) {
       },
       test: {
         files: [sources, specs],
-        tasks: ['jasmine:test:build']
+        tasks: ['jasmine:test:build', 'manifest']
       },
       css: {
         files: sasses + '/**/*',

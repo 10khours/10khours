@@ -9,7 +9,7 @@ app.view.Home = Backbone.View.extend({
     this.$el.show();
     this._isActive = true;
     this.$el.find('.guide').remove();
-    if (!localStorage.getItem('hasShowState') && isFinite(orientation)) {
+    if (!localStorage.getItem('hasShowState') && window['orientation'] && isFinite(window['orientation'])) {
       this.$el.append('<p class="guide state-guide">横置手机查看进度！（请打开重力感应）</p>');
     }
   },
@@ -43,7 +43,7 @@ app.view.Home = Backbone.View.extend({
     else if (!this.collection.hasRecords()) {
       this.$el.append('<p class="guide count-guide">点击开始计时！</p>');
     }
-    else if (!localStorage.getItem('hasShowState') && isFinite(orientation)) {
+    else if (!localStorage.getItem('hasShowState') && window['orientation'] && isFinite(window['orientation'])) {
       this.$el.append('<p class="guide state-guide">横置手机查看进度！（请打开重力感应）</p>');
     }
 
