@@ -3,7 +3,9 @@ describe('Home View', function() {
 
   beforeEach(function() {
     spyOn(app.view.TaskList.prototype, 'initialize');
-    homeView = new app.view.Home();
+    homeView = new app.view.Home({
+      collection: new app.collection.Tasks()
+    });
   });
 
   it('should append taskListView', function() {
