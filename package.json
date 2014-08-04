@@ -17,11 +17,11 @@
     "grunt": "latest",
     "grunt-contrib-connect": "latest",
     "grunt-contrib-concat": "latest",
-    "grunt-contrib-jasmine": "latest",
+    "grunt-contrib-jasmine": "~0.4.0",
     "grunt-contrib-watch": "latest",
     "grunt-contrib-compass": "latest",
     "grunt-template-jasmine-istanbul": "latest",
-    "grunt-contrib-jshint": "latest",
+    "grunt-contrib-jshint": "~0.6.0",
     "grunt-contrib-uglify": "latest",
     "grunt-contrib-copy": "latest",
     "grunt-manifest": "~0.4.0"
